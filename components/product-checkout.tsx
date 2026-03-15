@@ -1,15 +1,25 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { ShoppingBag, Check, X, ArrowLeft, Shield, Truck, Award, CreditCard, Smartphone, RotateCcw } from 'lucide-react'
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
 } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe, type Stripe } from '@stripe/stripe-js'
 import { startCheckoutSession } from '@/app/actions/stripe'
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+let stripePromise: Promise<Stripe | null> | null = null
+
+function getStripePromise() {
+  if (!stripePromise) {
+    const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    if (key) {
+      stripePromise = loadStripe(key)
+    }
+  }
+  return stripePromise
+}
 
 interface ProductCheckoutProps {
   slug: string
@@ -63,7 +73,34 @@ export default function ProductCheckout({
     )
   }
 
+  const stripe = useMemo(() => getStripePromise(), [])
+
   if (showCheckout) {
+    if (!stripe) {
+      return (
+        <div className="mt-6 p-8 bg-secondary text-center">
+          <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <X className="w-8 h-8 text-yellow-600" />
+          </div>
+          <h3 className="font-serif text-2xl">
+            {lang === 'es' ? 'Configuración Pendiente' : 'Configuration Pending'}
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            {lang === 'es'
+              ? 'El sistema de pagos no está configurado. Por favor, contacta al administrador.'
+              : 'Payment system is not configured. Please contact the administrator.'}
+          </p>
+          <button
+            onClick={() => setShowCheckout(false)}
+            className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {lang === 'es' ? 'Volver' : 'Back'}
+          </button>
+        </div>
+      )
+    }
+
     return (
       <div className="mt-6 border border-border overflow-hidden">
         <div className="bg-secondary px-6 py-4 border-b border-border">
@@ -116,7 +153,7 @@ export default function ProductCheckout({
         <div className="p-6">
           <div id="checkout" className="min-h-[400px]">
             <EmbeddedCheckoutProvider
-              stripe={stripePromise}
+              stripe={stripe}
               options={{
                 fetchClientSecret,
                 onComplete: handleCheckoutComplete,
