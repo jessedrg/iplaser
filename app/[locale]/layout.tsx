@@ -4,6 +4,7 @@ import { locales, type Locale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/get-dictionary"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { WhatsAppBubble } from "@/components/whatsapp-bubble"
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -122,6 +123,7 @@ export default async function LocaleLayout({
         <Navbar locale={locale as Locale} dict={dict} />
         <main className="flex-1">{children}</main>
         <Footer locale={locale as Locale} dict={dict} />
+        <WhatsAppBubble />
       </body>
     </html>
   )
