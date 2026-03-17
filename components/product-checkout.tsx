@@ -126,7 +126,7 @@ export default function ProductCheckout({
             <div>
               <p className="text-sm font-medium">{productName}</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {lang === 'es' ? 'Envío gratis incluido' : 'Free shipping included'}
+                {lang === 'es' ? 'Envío gratis a Europa · Entrega en 2 semanas' : 'Free shipping to Europe · 2 week delivery'}
               </p>
             </div>
             <p className="font-serif text-xl">{price}€</p>
@@ -172,7 +172,7 @@ export default function ProductCheckout({
             </div>
             <div className="flex items-center gap-1.5">
               <Truck className="w-3.5 h-3.5" />
-              <span>{lang === 'es' ? 'Envío gratis' : 'Free shipping'}</span>
+              <span>{lang === 'es' ? 'Envío gratis · 2 sem.' : 'Free shipping · 2 weeks'}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Award className="w-3.5 h-3.5" />

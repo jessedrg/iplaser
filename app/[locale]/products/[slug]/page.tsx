@@ -205,7 +205,7 @@ export default async function ProductPage({ params }: PageProps) {
                 </span>
               </div>
               <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground mt-2">
-                {lang === "es" ? "IVA incluido · Envío gratis a toda España" : "VAT included · Free shipping across Europe"}
+                {lang === "es" ? "IVA incluido · Envío gratis a Europa · Entrega en 2 semanas" : "VAT included · Free shipping to Europe · 2 week delivery"}
               </p>
 
               {/* Checkout */}

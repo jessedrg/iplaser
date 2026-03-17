@@ -33,6 +33,19 @@ export async function startCheckoutSession(slug: string) {
     shipping_address_collection: {
       allowed_countries: ['ES', 'DE', 'FR', 'IT', 'NL', 'PT', 'GB', 'AT', 'BE', 'IE'],
     },
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: 0, currency: 'eur' },
+          display_name: 'Free Shipping to Europe',
+          delivery_estimate: {
+            minimum: { unit: 'business_day', value: 10 },
+            maximum: { unit: 'business_day', value: 14 },
+          },
+        },
+      },
+    ],
     phone_number_collection: {
       enabled: true,
     },

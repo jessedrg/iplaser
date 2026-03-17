@@ -116,7 +116,7 @@ const en = {
     terms: "Terms & Conditions",
     returns: "Returns",
     contact: "Contact",
-    shipping: "Free shipping across Europe",
+    shipping: "Free shipping to Europe · 2 weeks",
     copyright: "© 2026 IPL LASER. All rights reserved.",
   },
   blog: {
