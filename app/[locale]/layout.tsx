@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/get-dictionary"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { WhatsAppBubble } from "@/components/whatsapp-bubble"
+import { Analytics } from "@vercel/analytics/next"
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -124,6 +125,7 @@ export default async function LocaleLayout({
         <main className="flex-1">{children}</main>
         <Footer locale={locale as Locale} dict={dict} />
         <WhatsAppBubble />
+        <Analytics />
       </body>
     </html>
   )
