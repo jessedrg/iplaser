@@ -28,7 +28,7 @@ const es = {
     subtitle: "Depilación profesional desde casa. Con envío gratis y 2 años de garantía.",
     cta: "Comprar Ahora",
     features: "Características",
-    freeShipping: "Envío gratis",
+    freeShipping: "Envío gratis · 2 sem.",
     warranty: "2 años garantía",
     popular: "Más vendido",
     viewProduct: "Ver Producto",

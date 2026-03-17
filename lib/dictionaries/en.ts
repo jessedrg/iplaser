@@ -28,7 +28,7 @@ const en = {
     subtitle: "Professional hair removal from home. With free shipping and 2-year warranty.",
     cta: "Buy Now",
     features: "Features",
-    freeShipping: "Free shipping",
+    freeShipping: "Free shipping · 2 weeks",
     warranty: "2 year warranty",
     popular: "Best seller",
     viewProduct: "View Product",
